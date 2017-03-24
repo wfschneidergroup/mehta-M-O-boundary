@@ -23,7 +23,7 @@
 #+latex_header: \author{Prateek Mehta}
 #+latex_header: \affiliation{Department of Chemical and Biomolecular Engineering, University of Notre Dame, Notre Dame, Indiana 46556, United States}
 
-#+latex_header: \author{Jefferey Greeley}
+#+latex_header: \author{Jeffrey Greeley}
 #+latex_header: \affiliation{School of Chemical Engineering, Purdue University, West Lafayette, Indiana 47907, United States}
 
 #+latex_header: \author{W. Nicholas Delgass}
@@ -41,7 +41,7 @@
 
 * Introduction
 
-In this document we provide supplementary figures and tables referred to in the main text. In addition, a full database of our DFT calculations is provided, following the best practices highlighted in Ref. cite:bligaard-2016-towar-bench. The DFT database is contained in an Atomic Simulation Environment (ASE) cite:larsen-2017-atomic-simul database file (/metal-support-boundary.db/) written in SQLite format. Examples of using the database file to reproduce our results are provided in Sec. ref:sec:database. Emacs [[http://orgmode.org][org-mode]] was used to prepare this document, in a manner similar to that described by John Kitchin cite:kitchin-2015-examp-effec. The org-source file (/supporting-info.org/) was used to execute all the example code in Sec. ref:sec:database in place,  and was subsequently exported to a \latex PDF. With a PDF reader that supports attachments, the reader should be able to access the database file by clicking here: attachfile:metal-support-boundary.db, and the org-mode source by clicking here: attachfile:supporting-info.org. Alternatively, these data files are hosted in an external repository found at: https://doi.org/10.5281/zenodo.164022 cite:mehta_prateek_2016_164022.
+In this document we provide supplementary figures and tables referred to in the main text. In addition, a full database of our DFT calculations is provided, following the best practices highlighted in Ref. cite:bligaard-2016-towar-bench. The DFT database is contained in an Atomic Simulation Environment (ASE) cite:larsen-2017-atomic-simul database file (/metal-support-boundary.db/) written in SQLite format. Examples of using the database file to reproduce our results are provided in Sec. ref:sec:database. Emacs [[http://orgmode.org][org-mode]] was used to prepare this document, in a manner similar to that described by John Kitchin cite:kitchin-2015-examp-effec. The org-source file (/supporting-info.org/) was used to execute all the example code in Sec. ref:sec:database in place,  and was subsequently exported to a \latex PDF. With a PDF reader that supports attachments, the reader should be able to access the database file by clicking here: attachfile:metal-support-boundary.db, and the org-mode source by clicking here: attachfile:supporting-info.org. Alternatively, these data files are hosted in an external Zenodo repository cite:prateek_mehta_2017_437907.
 
 * Supplementary Results
 
