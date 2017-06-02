@@ -1,10 +1,11 @@
 #+begin_header
-#+TITLE: Supporting Information: Adsorption energy correlations at the metal-support boundary
+#+TITLE: Supporting Information\linebreak Adsorption energy correlations at the metal-support boundary
 #+LATEX_CLASS: achemso
 #+LATEX_CLASS_OPTIONS: [journal=accacs,manuscript=article,email=true, layout=traditional]
-#+latex_header: \setkeys{acs}{biblabel=brackets,super=true,articletitle=true,maxauthors=3}
 #+EXPORT_EXCLUDE_TAGS: noexport
 #+OPTIONS: author:nil date:nil toc:nil
+#+latex_header: \setkeys{acs}{biblabel=brackets,super=true,articletitle=False,maxauthors=0}
+#+latex_header: \usepackage[utf8]{inputenc}
 #+latex_header: \usepackage[T1]{fontenc}
 #+latex_header: \usepackage{fixltx2e}
 #+latex_header: \usepackage{url}
@@ -17,8 +18,8 @@
 #+latex_header: \usepackage{latexsym}
 #+latex_header: \usepackage{amssymb}
 #+latex_header: \usepackage{minted}
+#+latex_header: \usepackage[linktocpage, pdfstartview=FitH, colorlinks=true, linkcolor=black, anchorcolor=black, citecolor=black, filecolor=black, menucolor=black, urlcolor=black]{hyperref}
 #+latex_header: \usepackage{attachfile}
-#+latex_header: \usepackage[linktocpage, pdfstartview=FitH, colorlinks, linkcolor=black, anchorcolor=black, citecolor=black, filecolor=blue, menucolor=black, urlcolor=blue]{hyperref}
 
 #+latex_header: \author{Prateek Mehta}
 #+latex_header: \affiliation{Department of Chemical and Biomolecular Engineering, University of Notre Dame, Notre Dame, Indiana 46556, United States}
@@ -33,6 +34,7 @@
 #+latex_header: \email{wschneider@nd.edu}
 #+latex_header: \affiliation{Department of Chemical and Biomolecular Engineering, University of Notre Dame, Notre Dame, Indiana 46556, United States}
 #+latex_header: \keywords{}
+
 #+latex_header:\renewcommand{\thefigure}{S\arabic{figure}}
 #+latex_header:\renewcommand{\thetable}{S\arabic{table}}
 #+end_header
@@ -41,7 +43,8 @@
 
 * Introduction
 
-In this document we provide supplementary figures and tables referred to in the main text. In addition, a full database of our DFT calculations is provided, following the best practices highlighted in Ref. cite:bligaard-2016-towar-bench. The DFT database is contained in an Atomic Simulation Environment (ASE) cite:larsen-2017-atomic-simul database file (/metal-support-boundary.db/) written in SQLite format. Examples of using the database file to reproduce our results are provided in Sec. ref:sec:database. Emacs [[http://orgmode.org][org-mode]] was used to prepare this document, in a manner similar to that described by John Kitchin cite:kitchin-2015-examp-effec. The org-source file (/supporting-info.org/) was used to execute all the example code in Sec. ref:sec:database in place,  and was subsequently exported to a \latex PDF. With a PDF reader that supports attachments, the reader should be able to access the database file by clicking here: attachfile:metal-support-boundary.db, and the org-mode source by clicking here: attachfile:supporting-info.org. Alternatively, these data files are hosted in an external Zenodo repository cite:prateek_mehta_2017_437907.
+In this document we provide supplementary figures and tables referred to in the main text. In addition, a full database of our DFT calculations is provided, following the best practices highlighted in Ref. cite:bligaard-2016-towar-bench. The DFT database is contained in an Atomic Simulation Environment (ASE) cite:larsen-2017-atomic-simul database file (/metal-support-boundary.db/) written in SQLite format. Examples of using the database file to reproduce our results are provided in Sec. ref:sec:database. Emacs [[http://orgmode.org][org-mode]] was used to prepare this document, in a manner similar to that described by John Kitchin cite:kitchin-2015-examp-effec. The org-source file (/supporting-info.org/) was used to execute all the example code in Sec. ref:sec:database in place,  and was subsequently exported to a \latex PDF. With a PDF reader that supports attachments (note that Preview on MacOS does not), the reader should be able to access the database file by clicking here: attachfile:metal-support-boundary.db, and the org-mode source by clicking here: attachfile:supporting-info.org. Alternatively, these data files are hosted in an external Zenodo [[https://doi.org/10.5281/zenodo.437907][repository]] cite:prateek_mehta_2017_437907.
+
 
 * Supplementary Results
 
@@ -60,15 +63,34 @@ In this document we provide supplementary figures and tables referred to in the 
  | Au         |                     4.16 |                    2.2 |
 
 
+** Justification of constraints applied during relaxation of M/MgO/A
+
+The M/MgO model was constructed by fully relaxing the metal nanowire on the MgO support. In the presence of adsorbates, three possible types of constraints on the metal atoms were initially tested, shown for an example case of NH adsorption on Pt/MgO in Fig.\nbsp{}ref:fig:constraints. In Fig.\nbsp{}[[ref:fig:constraints]](a), we show the optimized structure when only vertical relaxations of the metal atoms were allowed. Vertical relaxation of the nanowire allows the incorporation of changes in the metal/support adhesion arising from modified interfacial dipoles due to charge transfer to the adsorbate. Fixing the metal atoms in the lateral directions ensures that the nanowire retains the structural rigidity expected of a large nanoparticle, and avoids any spurious effects of nanowire reconstruction on the adsorption energetics. For comparison, Fig.\nbsp{}[[ref:fig:constraints]](b) shows the fully relaxed structure in the absence of any constraints, where a clear structural reconstruction of the nanowire far from the interface is seen. It should be noted that not all M/MgO/adsorbate combinations show such reconstruction under full relaxation. In addition to the above cases, an approach similar to the one proposed by Molina \textit{et al}cite:molina-2004-adsor-o was also tested, where we took the structure obtained in Fig.\nbsp{}[[ref:fig:constraints]](a) and allowed unconstrained relaxation of the metal atoms along the boundary while keeping the other metal atoms fully frozen. The final geometry after such a relaxation is shown in Fig.\nbsp{}[[ref:fig:constraints]](c), which differs in energy from the geometry in Fig.\nbsp{}[[ref:fig:constraints]](a) by only 0.05 eV. Owing to the small energy difference between the two structures, we chose to neglect the second relaxation step for all calculations in the main text.
+
+#+ATTR_LATEX: :width 3in :placement [H]
+#+caption: Optimized geometries of NH on Pt/MgO after (a) only vertical relaxations of metal atoms are allowed, (b) full relaxation of the M/MgO/A, and (c) metal atoms along the boundary are unconstrained, while other metal atoms (shown in darker color) are frozen in the positions obtained in (a). label:fig:constraints
+[[file:images/Pt-NH-constraints.png]]
+
+
+
 ** Dependence of $E_{\textrm{ads}}$ on choice of lattice constant
 
-In this section, we discuss the sensitivity of the adsorption energies calculated at the M/MgO boundary to the choice of lattice constant used in the direction where the metal is periodic. Fig.\nbs{}ref:fig:lattice-parity shows a parity plot of the calculated adsorption energies when the oxide lattice constant is used vs.\nbsp{}those when the metal lattice is used.  The computed energies are nearly identical, showing that the results are not very sensitive to the choice of lattice constant. The key reason for the insensitivity is that the strain and ligand effects generally scale with each other, and counterbalance each other. The code used to make this Fig.\nbsp{}ref:fig:lattice-parity is provided in ref:sec:lattice.
+In this section, we discuss the sensitivity of the adsorption energies calculated at the M/MgO boundary to the choice of lattice constant used in the direction where the metal is periodic. Fig.\nbsp{}ref:fig:lattice-parity shows a parity plot of the calculated adsorption energies when the oxide lattice constant is used vs.\nbsp{}those when the metal lattice is used. The adsorption energies are nearly identical in the two cases, showing that the results are not very sensitive to the choice of lattice constant. C on Ir, which is most sensitive to strain (see Fig.\nbsp{}4(a) in the main text) has the largest deviation from parity. The code used to make Fig.\nbsp{}ref:fig:lattice-parity is provided in ref:sec:lattice.
 
 #+ATTR_LATEX: :width 4in :placement [H]
-#+caption: Comparison adsorption energies at the M/MgO boundary using the MgO lattice contants and the metal lattice constants in the infinite dimension of the nanowire label:fig:lattice-parity
+#+caption: Comparison of adsorption energies at the M/MgO boundary using the MgO lattice constants and the metal lattice constants in the infinite dimension of the nanowire label:fig:lattice-parity
 [[file:images/SI-parity-lattice-fixed-ads.png]]
 
 
+
+
+** Comparison of adsorption energies at the M/MgO boundary and the (211) fourfold site
+
+In addition to fcc(111) threefold and fcc(211) stepped sites (see Fig.\nbsp{}2 in the main text), adsorption energies on a stepped-terrace site (i.e., a (211) fourfold site) were also compared to those at the M/MgO boundary. Only a handful of adsorbates were found to be stable at this site, with the others moving to the step edge or to a threefold site away from the step. The  adsorption energies at the fourfold site failed to recover those at the M/MgO boundary, see Fig.\nbsp{}ref:fig:fourfold.
+
+#+ATTR_LATEX: :width 4in :placement [H]
+#+caption: Comparison of adsorption energies at the M/MgO boundary using the MgO lattice contants and the metal lattice constants in the infinite dimension of the nanowire. label:fig:fourfold
+[[file:images/211-fourfold-comparison.png]]
 
 
 ** Effect of Oxide on Metal d-bands
@@ -184,16 +206,6 @@ MgO on its own only weakly participates in charge transfer to the adsorbate (see
  | \ce{F}      | Au      | $-0.76$   | $-0.62$   | $-0.13$           |
  #+end_table
 
-#+begin_figure
-#+ATTR_LATEX: :width 3in :placement [H]
-#+caption: Density of states schematics of the separated metal and adsorbate atoms on MgO showing the electronic driving force for the charge transfer at the M/MgO. label:fig:charge-transfer
-[[file:images/charge-transfer-schematic.png]]
-#+end_figure
-
-As noted in the main text, the charge enrichment at site /B1/ depends on the geometry of the adsorbate. We compare two different adsorption geometries of \ce{NH2} at site /B1/ at the Pt/MgO boundary in Fig.\nbsp{}[[ref:fig:NH2-configs]](a) and Fig.\nbsp{}[[ref:fig:NH2-configs]](b). These configurations are denoted as \ce{NH2}^{a} and \ce{NH2}^{b} in Table ref:tab:qB1 respectively. The charge enrichment of \ce{NH2}^{a} is minimal. In the rotated configuration, \ce{NH2}^{b}, charging of the adsorbate does occur, and the final geometry (both of the adsorbate atoms and the oxide atoms making up the adsorption site) resembles that at site /R/ (Fig.\nbsp{}[[ref:fig:NH2-configs]](c)). As a consequence of the charge transfer, bonds with the nitrogen are more equally shared between the metal and the support in for \ce{NH2}^{b}. For Au/MgO and Ag/MgO, adsorption in the \ce{NH2}^{b} configuration is slightly more favorable than \ce{NH2}^{a} (by about 0.08 eV) For Rh, Ir, Pd, and Pt,  \ce{NH2}^{a} is more stable than \ce{NH2}^{b} (by 0.1-0.3 eV depending on the metal). In the main text, \ce{NH2}^{a} was used for all M/MgO configurations.
-
-Fig.\nbsp{}ref:fig:B1-v-R plots the difference in adsorption energies at site /B1/ and site /R/. We find that all adsorbates in this study prefer to bind at the dual metal-oxide site, /B1/, rather than at site /R/ remote from the interface. It should be noted here adsorption on the hollow site on the oxide (which was not considered in this study) may be thermodynamically preferred over site /R/.
-
 #+begin_table
 #+ATTR_LATEX: :font \scriptsize :placement [H] :align llrr
 #+caption:  Bader charge enrichment on the adsorbing atom at site /R/ for the M/MgO systems. label:tab:qR
@@ -257,16 +269,41 @@ Fig.\nbsp{}ref:fig:B1-v-R plots the difference in adsorption energies at site /B
 #+end_table
 
 #+begin_figure
+#+ATTR_LATEX: :width 4in :placement [H]
+#+caption: Density of states schematics of the separated metal and adsorbate atoms on MgO showing the electronic driving force for the charge transfer at the M/MgO. label:fig:charge-transfer
+[[file:images/charge-transfer-schematic.png]]
+#+end_figure
+
+As noted in the main text, the charge enrichment at site /B1/ depends on the geometry of the adsorbate. We compare two different adsorption geometries of \ce{NH2} at site /B1/ at the Pt/MgO boundary in Fig.\nbsp{}[[ref:fig:NH2-configs]](a) and Fig.\nbsp{}[[ref:fig:NH2-configs]](b). These configurations are denoted as \ce{NH2}^{a} and \ce{NH2}^{b} in Table ref:tab:qB1 respectively. The charge enrichment of \ce{NH2}^{a} is minimal. In the rotated configuration, \ce{NH2}^{b}, charging of the adsorbate does occur, and the final geometry (both of the adsorbate atoms and the oxide atoms making up the adsorption site) resembles that at site /R/ (Fig.\nbsp{}[[ref:fig:NH2-configs]](c)). As a consequence of the charge transfer, bonds with the nitrogen are more equally shared between the metal and the support for \ce{NH2}^{b}. For Au/MgO and Ag/MgO, adsorption in the \ce{NH2}^{b} configuration is slightly more favorable than \ce{NH2}^{a} (by about 0.08 eV) For Rh, Ir, Pd, and Pt,  \ce{NH2}^{a} is more stable than \ce{NH2}^{b} (by 0.1-0.3 eV depending on the metal). In the main text, \ce{NH2}^{a} was used for all M/MgO configurations.
+
+#+begin_figure
 #+ATTR_LATEX: :width 3in :placement [H]
 #+caption: (a-b) Possible adsorption geometries of \ce{NH2} at site /B1/ of Pt/MgO. (c) \ce{NH2} adsorbed at site /R/ of Pt/MgO. label:fig:NH2-configs
 [[file:images/NH2-configs.png]]
 #+end_figure
+
+Fig.\nbsp{}ref:fig:B1-v-R plots the difference in adsorption energies at site /B1/ and site /R/. We find that all adsorbates in this study prefer to bind at the dual metal-oxide site, /B1/, rather than at site /R/ remote from the interface. It should be noted here adsorption on the hollow site on the oxide (which was not considered in this study) may be thermodynamically preferred over site /R/.
 
 #+begin_figure
 #+ATTR_LATEX: :width 3in :placement [H]
 #+caption: Comparison of adsorption energies at site /B1/ and site /R/ for different adsorbates. label:fig:B1-v-R
 [[file:images/B1-v-R.png]]
 #+end_figure
+
+
+** Functional dependence of Redox Energy
+
+#+ATTR_LATEX: :placement [H] :align lcccc :width \textwidth
+#+caption: Comparison of F adsorption and redox energies at site /R/ using the PBE and HSE06 functionals label:tab:HSE
+|----------+------------------------------------------+----------------------------------------+----------------------------------------+------------------------------------------|
+| *System* | *$E_{\textrm{ads}}^{\textrm{PBE}}$*      | *$E_{\textrm{ads}}^{\textrm{HSE06}}$*  | *$E_{\textrm{redox}}^{\textrm{PBE}}$*  | *$E_{\textrm{redox}}^{\textrm{HSE06}}$*  |
+|----------+------------------------------------------+----------------------------------------+----------------------------------------+------------------------------------------|
+| Au/MgO   | $-3.58$                                  | $-3.24$                                | $-1.41$                                | $-2.43$                                  |
+| Pd/MgO   | $-3.73$                                  | $-3.39$                                | $-1.56$                                | $-2.58$                                  |
+| Ag/MgO   | $-4.16$                                  | $-3.89$                                | $-1.98$                                | $-3.08$                                  |
+
+
+
 
 
 * Using the calculation database label:sec:database
@@ -287,9 +324,9 @@ The code examples in the following sections are dependent on the following pytho
 
 - [[http://seaborn.pydata.org][Seaborn]]
 
-- utils.py cite:mehta_prateek_2016_164022
+- utils.py
 
-NumPy, SciPy, Matplotlib are standard packages used in scientific computing and are included in most python installations. We used the Anaconda python stack. ASE is the atomic simulation environment, which was used in conjunction with the [[https://github.com/jkitchin/jasp][/jasp/]] interface to [[https://cms.mpi.univie.ac.at/vasp/vasp/vasp.html][VASP]] to perform all the calculations in this work. The database functionalities within ASE were used to store all the calculation input parameters and key output data. Pycse contains functions written by John Kitchin for computations in science and engineering. We used the linear regression function from Pycse. Seaborn was used for prettier plotting. /utils.py/ contains utility analysis functions written specifically for this work by Prateek Mehta, is embedded here: attachfile:utils.py, and is available in the Zenodo repository for this work cite:mehta_prateek_2016_164022.
+NumPy, SciPy, Matplotlib are standard packages used in scientific computing and are included in most python installations. We used the Anaconda python stack. ASE is the atomic simulation environment, which was used in conjunction with the [[https://github.com/jkitchin/jasp][/jasp/]] interface to [[https://cms.mpi.univie.ac.at/vasp/vasp/vasp.html][VASP]] to perform all the calculations in this work. The database functionalities within ASE were used to store all the calculation input parameters and key output data. Pycse contains functions written by John Kitchin for computations in science and engineering. We used the linear regression function from Pycse. Seaborn was used for prettier plotting. /utils.py/, which contains utility analysis functions written specifically for this work by Prateek Mehta, is embedded here: attachfile:utils.py, and is available in the Zenodo repository for this work cite:prateek_mehta_2017_437907.
 
 
 ** Calculation types and key-value pairs
@@ -320,7 +357,7 @@ for selection in example_selections:
 #+begin_example
 Possible key-value pairs for selection: specie
 calc_type: relax
-specie: C, CH, F, O, N, CH2, H2N, HN, HO
+specie: C, CH, F, F-HSE06, O, N, CH2, H2N, HN, HO
 
 Possible key-value pairs for selection: surf=MgO
 surf: MgO
@@ -328,7 +365,7 @@ layers: 6
 ads: None, CH, F, C, O, N, CH2, H2N, HN, HO
 area: 2x2
 site: Mg
-calc_type: scf, relax
+calc_type: HSE06-scf, scf, relax
 
 Possible key-value pairs for selection: surf=Pt-111
 surf: Pt-111
@@ -339,6 +376,7 @@ Possible key-value pairs for selection: surf=Pt-211
 surf: Pt-211
 calc_type: relax
 ads: None, CH, F, C, O, N, CH2, H2N, HN, HO
+site: bridge, fourfold
 
 Possible key-value pairs for selection: surf=Pt-nanowire
 surf: Pt-nanowire
@@ -418,10 +456,6 @@ print '\nOther Input:'
 for key, val in calc_params['input'].iteritems():
     print '{0}={1}'.format(key, val)
 
-print '\nPOTCARs:'
-for sym, potcar, githash in calc_params['potcar']:
-    print sym, potcar, githash
-
 #+END_SRC
 
 #+RESULTS:
@@ -484,17 +518,13 @@ kpts_nintersections=None
 setups=None
 txt=-
 gamma=False
-
-POTCARs:
-H potpaw/H/POTCAR 6ffd42a20d00a4c64c8eafc31dd1a6344c7a7ace
-O potpaw/O/POTCAR ed92eda81889c737add534c028871fa71f3efb53
 #+end_example
 
 
 
 ** Reproducing the figures in the paper label:sec:fig-reproduction
    
-*** Fig 1, Fig 3(a)
+*** Fig 1, Fig 3
     
  These figures were created by saving the visualizations of the atomic structures using VESTA cite:momma-2011-vesta, and merging them together using [[https://affinity.serif.com/en-us/designer/][Affinity Designer]].
 
@@ -555,7 +585,7 @@ colors = ['#8073B1', '#C84B54', '#138198', '#27ae60', '#95a5a6', '#f1c40f']
 for ads in ['C', 'CH', 'CH2', 'N', 'HN', 'O', 'HO', 'H2N', 'F']:
     marker = amarkers[ads]
     fcc111_a_s = 'ads={0}, natoms={1}'.format(ads, len(ads) + 16)
-    fcc211_a_s = 'ads={0}, natoms={1}'.format(ads, len(ads) + 36)
+    fcc211_a_s = 'ads={0}, natoms={1}, site=bridge'.format(ads, len(ads) + 36)
 
     supported_a_s = 'ads={0}, calc_type=relax, p_lattice=MgO, natoms={1}, site=B1'.format(
         ads, 132 + len(ads))
@@ -661,9 +691,7 @@ for ext in ['png', 'eps']:
 
 
 
-*** Fig 3: Thermodynamic Cycle
-
-The code below generates Fig. 3(b), with a placeholder for Fig. 3(a). 
+*** Fig 4: Adsorption Energy Contributions
 
 #+BEGIN_SRC python :results output org drawer
 import matplotlib.pyplot as plt
@@ -672,32 +700,42 @@ from ase.db import connect
 import numpy as np
 from utils import get_energy, amarkers, mcolors
 from ase.visualize import view
+plt.style.use('classic')
 
 db = connect('metal-support-boundary.db')
 
 sns.set_context('poster')
-sns.set_style('dark')
+sns.set_style('white')
 
-plt.figure(figsize=(18,6), dpi=200)
+fig = plt.figure(figsize=(9, 16), dpi=100)
 
-plt.subplot2grid((6,1), (2, 0), colspan=1, rowspan=4)
-plt.axhline(0, color='white', ls='--')
+ax1 = plt.subplot(4, 1, 1)
+ax2 = plt.subplot(4, 1, 2, sharex=ax1)
+ax3 = plt.subplot(4, 1, 3, sharex=ax1)
+ax4 = plt.subplot(4, 1, 4, sharex=ax1)
+
+labels = ['$\Delta E_{\mathrm{ads}}^{\mathrm{strain}}$ (eV)',
+          '$\Delta E_{\mathrm{ads}}^{\mathrm{reorient}}$ (eV)',
+          '$\Delta E_{\mathrm{ads}}^{\mathrm{bond}}$ (eV)',
+          '$\Delta E_{\mathrm{ads}}$ (eV)']
+
+for ax, ylabel in zip([ax1, ax2, ax3, ax4], labels):
+    ax.set_ylim(-1.45, 1.45)
+    ax.set_xlim(-0.5, 8.5)
+    ax.grid()
+    ax.set_ylabel(ylabel, fontsize=30)
+    ax.tick_params('x', labelsize=24)
+    ax.tick_params('y', labelsize=21)
+    ax.axhline(color='k', ls='--', lw=2)
 
 plots_m, labels_m, plots_e, labels_e = [], [], [], []
 
 # Legend stuff
 for m in ['Rh', 'Ir', 'Pd', 'Pt', 'Ag', 'Au']:
-    p1, = plt.plot([], [], 's', color=mcolors[m], label=m, ms=15, mec='k', mew=0.8)
+    p1, = plt.plot([], [], 's', color=mcolors[m], label=m, ms=18)
     plots_m.append(p1)
     labels_m.append(m)
 
-for e, emarker in [('$\Delta E_{\mathrm{ads}}^{\mathrm{strain}}$', 'o'),
-                   ('$\Delta E_{\mathrm{ads}}^{\mathrm{reorient}}$', '^'),
-                   ('$\Delta E_{\mathrm{ads}}^{\mathrm{bond}}$', 'd'),
-                   ('$\Delta E_{\mathrm{ads}}$', 's')]:
-    p2, = plt.plot([], [], emarker, color='w', mew=0.8, mec='k', ms=15)
-    plots_e.append(p2)
-    labels_e.append(e)
 
 for i, ads in enumerate(['C', 'CH', 'CH2', 'N', 'HN', 'H2N', 'O', 'HO', 'F']):
 
@@ -738,16 +776,16 @@ for i, ads in enumerate(['C', 'CH', 'CH2', 'N', 'HN', 'H2N', 'O', 'HO', 'F']):
                           p_lattice=metal)
         except KeyError:
             pass
-        
+
         E_M_MgOrem_Afixed = get_energy(db,
-                                        surf='{0}-nanowire-oxide-removed'.format(metal), 
+                                        surf='{0}-nanowire-oxide-removed'.format(metal),
                                         ads=ads,
                                         p_lattice='MgO',
                                         calc_type='scf',
                                         site='B1')
 
         E_M_MgOrem_Arelaxed = get_energy(db,
-                                         surf='{0}-nanowire-oxide-removed'.format(metal), 
+                                         surf='{0}-nanowire-oxide-removed'.format(metal),
                                          ads=ads,
                                          p_lattice='MgO',
                                          calc_type='relax_ads',
@@ -767,7 +805,7 @@ for i, ads in enumerate(['C', 'CH', 'CH2', 'N', 'HN', 'H2N', 'O', 'HO', 'F']):
                                      ads=ads,
                                      p_lattice='MgO',
                                      calc_type='scf',
-                                     site='B1')                                     
+                                     site='B1')
 
         E_12 = E_M_MgOrem_Arelaxed - E_M_MgOrem_Arem - (E_nw_A - E_nw)
 	E_23 = E_M_MgOrem_Afixed - E_M_MgOrem_Arelaxed
@@ -777,68 +815,49 @@ for i, ads in enumerate(['C', 'CH', 'CH2', 'N', 'HN', 'H2N', 'O', 'HO', 'F']):
 	E_cycle = E_12 + E_23 + E_34
 
         kwargs = dict(c=color,
-                      ms=15,
-                      mew=0.8)
+                      ms=20,
+                      mew=1)
 
-	if j is 0:
-            plt.axvline(i, color = 'white', ls='-')
-	    plt.axvline(i + 1, color='white', ls='-')
+        ax1.plot(i, E_12, marker='v', **kwargs)
+        ax2.plot(i, E_23, marker='^', **kwargs)
+        ax3.plot(i, E_34, marker='d', **kwargs)
+        ax4.plot(i, E_14, marker='s', **kwargs)
 
+plt.xticks(np.arange(0, 9),
+           ['C', 'CH', 'CH$_{2}$', 'N', 'NH', 'NH$_{2}$', 'O', 'OH', 'F'])
 
-        plt.plot(i + 0.2, E_12, marker='o', **kwargs)
-        plt.plot(i + 0.4, E_23, marker='^', **kwargs)
-        plt.plot(i + 0.6, E_34, marker='d', **kwargs)
-        plt.plot(i + 0.8, E_14, marker='s', **kwargs)
-
-plt.xticks(np.arange(0, 9) + 0.5,
-           ['C', 'CH', 'CH$_{2}$', 'N', 'NH', 'NH$_{2}$', 'O', 'OH', 'F'],
-           fontsize=18)
-
-plt.ylabel('Energy (eV)', fontsize=20)
-
-lm = plt.legend(plots_m,
-                labels_m,
-                loc='best',
-                bbox_to_anchor=(0.125, 1),
-                ncol=6,
-                frameon=True,
-                fontsize=20,
-                markerscale=0.8,
-                labelspacing=0.25,
-                columnspacing=0.25,
-                handletextpad = 0,
-                borderpad=0.305,
-                fancybox=True)
-
-plt.gca().add_artist(lm)
-plt.legend(plots_e,
-           labels_e,
+ax1.legend(plots_m,
+           labels_m,
            loc='best',
-           bbox_to_anchor=(0.5, 1),
-           ncol=4,
+           bbox_to_anchor=(0.982, 1.025),
+           ncol=6,
            frameon=True,
-           fontsize=20,
-           markerscale=0.8,
-           labelspacing=0.2,
-           columnspacing=0.2,
+           fontsize=24,
+           markerscale=1,
+           labelspacing=0.25,
+           columnspacing=0.25,
            handletextpad = 0,
-           borderpad=0.2,
+           borderpad=0.305,
+	   shadow=True,
            fancybox=True)
 
-plt.figtext(0.005, 0.95, 'a)', fontsize=24)
-plt.figtext(0.005, 0.68, 'b)', fontsize=24)
+
+plt.figtext(0.025, 0.975, 'a)', fontsize=27)
+plt.figtext(0.025, 0.735, 'b)', fontsize=27)
+plt.figtext(0.025, 0.485, 'c)', fontsize= 27)
+plt.figtext(0.025, 0.235, 'd)', fontsize=27)
 
 plt.tight_layout()
-for ext in ['eps', 'png']:
-    plt.savefig('images/fig3-thermo-cycle-ol.{0}'.format(ext), dpi=300)
+for ext in ['eps', 'png', 'pdf']:
+    plt.savefig('images/fig4-thermo-cycle-contrib.{0}'.format(ext), dpi=300)
 #+END_SRC
 
 #+RESULTS:
+:RESULTS:
+:END:
 
 
-
-
-*** Fig 4: Redox Energy
+*** Fig 5: Redox Energy
 
 #+BEGIN_SRC python
 import numpy as np
@@ -846,12 +865,12 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from ase.db import connect
 from utils import get_energy, mcolors, amarkers
-
+plt.style.use('classic')
 db = connect('metal-support-boundary.db')
 
 sns.set_context('poster')
-sns.set_style('darkgrid')
-plt.figure(figsize=(9,6), dpi=200)
+sns.set_style('white')
+plt.figure(figsize=(9,6), dpi=300)
 
 metals = ['Rh', 'Ir', 'Pd', 'Pt', 'Ag', 'Au']
 
@@ -896,7 +915,7 @@ for i, ads in enumerate(adsorbates):
  
         kwargs = {'c':mcolors[metal],
                   'marker': 'v',
-                  'ms':26,
+                  'ms':30,
                   'mec':'k',
                   'mew':1.5}
 
@@ -904,32 +923,35 @@ for i, ads in enumerate(adsorbates):
 	if i is 0:
             plt.plot([], [], label=metal, ls='', **kwargs)
 
-plt.xticks(range(len(adsorbates)), alabels, fontsize=24)
-plt.yticks(fontsize=20)
+plt.xticks(range(len(adsorbates)), alabels, fontsize=28)
+plt.yticks(fontsize=28)
 plt.ylim([-2.1, 0])
 plt.xlim([-0.5, len(adsorbates) - 0.5])
-plt.ylabel('$E_{\mathrm{redox}}$ (eV)', fontsize=28)
+plt.ylabel('$E_{\mathrm{redox}}$ (eV)', fontsize=32)
 
 plt.legend(ncol=3,
            frameon=True,
            fancybox=True,
-           markerscale=0.7,
+           markerscale=0.8,
 	   borderpad=0.5,
            handletextpad=0,
 	   columnspacing=0.25,
-	   fontsize=24,
+	   fontsize=28,
            loc=3)
 
-
+plt.grid()
 plt.tight_layout()
-for ext in ['eps', 'png']:
-    plt.savefig('images/fig4-redox-energy.{0}'.format(ext), dpi=200)
+for ext in ['eps', 'png', 'pdf']:
+    plt.savefig('images/fig5-redox-energy.{0}'.format(ext), dpi=300)
+
 #+END_SRC
 
+#+RESULTS:
 
 
 
-*** Fig 5: Distance Relationships
+
+*** Fig 6: Distance Relationships
 
 #+BEGIN_SRC python :results output org drawer
 import matplotlib.pyplot as plt
@@ -939,9 +961,11 @@ import numpy as np
 from utils import get_energy, amarkers, mcolors
 from ase.visualize import view
 
+plt.style.use('classic')
 db = connect('metal-support-boundary.db')
 
 sns.set_context('poster')
+sns.set_style('white')
 plt.figure(figsize=(9, 12), dpi=300)
 
 # Legend stuff
@@ -1108,8 +1132,8 @@ plt.figtext(0.02, 0.525, 'c)', fontsize=28)
 plt.figtext(0.52, 0.525, 'd)', fontsize=28)
 plt.tight_layout()
 
-for ext in ['eps', 'png']:
-    plt.savefig('images/fig5-oxide-effect.{0}'.format(ext), dpi=300)
+for ext in ['eps', 'png', 'pdf']:
+    plt.savefig('images/fig6-oxide-effect.{0}'.format(ext), dpi=300)
 #+END_SRC
 
 #+RESULTS:
@@ -1119,7 +1143,7 @@ for ext in ['eps', 'png']:
 
 
 
-*** Fig 6: Scaling Relationships
+*** Fig 7: Scaling Relationships
 
 #+BEGIN_SRC python
 import matplotlib.pyplot as plt
@@ -1127,12 +1151,14 @@ import seaborn as sns
 from ase.db import connect
 import numpy as np
 from utils import mcolors, amarkers, regression, get_row_energies, get_pair_E_ads
+plt.style.use('classic')
 
 np.set_printoptions(precision=3)
 db = connect('metal-support-boundary.db')
 
 sns.set_context('poster')
-sns.set_style('darkgrid')
+sns.set_style('ticks')
+
 
 plt.figure(figsize=(12, 8), dpi=150)
 
@@ -1162,30 +1188,30 @@ for a1, a2 in pairs:
         plt.xlim(-6.25, -1.5)
 	plt.yticks(np.arange(-5, -1., 0.5), fontsize=18)
 
-        if a2 is 'H2N': 
+        if a2 is 'H2N':
             marker = '^'
-            texty = -1.6
+            texty = -1.625
             textx = -6.2
             yshift = -0.16
 	    xshift = -0.25
         else:
-            texty = -5.
+            texty = -5.0
             textx = -5.5
 	    yshift = 0.07
 	    xshift=-0.3
             marker = 'o'
-                        
+
     if a1 is 'C':
         plt.subplot(1, 3, 3)
         yshift = 0.1
 
-        if a2 is 'CH': 
+        if a2 is 'CH':
             marker = 'o'
             texty = -6.4
             textx = -6
 	    xshift = -0.45
         else:
-            texty = -2.8
+            texty = -2.85
             textx = -7.75
 	    xshift = -0.3
             marker = '^'
@@ -1199,7 +1225,7 @@ for a1, a2 in pairs:
     a1_relax_s = 'ads={0},calc_type=relax,p_lattice!=MgO, natoms={1}'.format(a1, 24 + len(a1))
     a2_relax_s = 'ads={0},calc_type=relax,p_lattice!=MgO,natoms={1}'.format(a2, 24 + len(a2))
 
-    # Clean nanowires    
+    # Clean nanowires
     clean_s = 'ads=None, calc_type=relax, p_lattice!=MgO, natoms=24'
 
     a1_E_ads, a2_E_ads = get_pair_E_ads(db, a1, a2, a1_relax_s, a2_relax_s, clean_s)
@@ -1251,7 +1277,7 @@ for a1, a2 in pairs:
     a1_E_ads_o, a2_E_ads_o = get_pair_E_ads(db, a1, a2, a1_relax_s, a2_relax_s, clean_s)
 
     for x1, x2, y1, y2 in zip(a1_E_ads, a1_E_ads_o, a2_E_ads, a2_E_ads_o):
-        
+
 
 	plt.annotate("",
                      xy=(x2, y2),
@@ -1277,17 +1303,17 @@ for a1, a2 in pairs:
     # so it does not overlap with metal-only eqn
     shift = {'C': -0.4,
              'O': -0.15,
-             'N': -0.2}
+             'N': -0.15}
 
     add = shift[a1]
-    
+
     if not a1 is 'C':
          text = 'y = {0:1.2f}x - {1:1.2f}'.format(pars[0],
                                                   abs(pars[1]))
     else:
          text = 'y = {0:1.2f}x\n      - {1:1.2f}'.format(pars[0],
                                                          abs(pars[1]))
-        
+
     if not a2 is 'CH':
          plt.plot(E1r, E2r, color='#C84B54', ls='-', lw=2)
          plt.text(textx,
@@ -1295,15 +1321,12 @@ for a1, a2 in pairs:
                   text,
                   va='baseline',
                   fontsize=18,
-                  color='#C84B54')      
+                  color='#C84B54')
 
 plt.tight_layout(pad=0.2)
-plt.figtext(0.01, 0.95, 'a)', fontsize=24)
-plt.figtext(0.33, 0.95, 'b)', fontsize=24)
-plt.figtext(0.67, 0.95, 'c)', fontsize=24)
 
-for ext in ['png', 'eps']:
-    plt.savefig('images/fig6-scaling-relations.{0}'.format(ext), dpi=300)
+for ext in ['png', 'eps', 'pdf']:
+    plt.savefig('images/fig7-scaling-relations.{0}'.format(ext), dpi=300)
 #+END_SRC
 
 #+RESULTS:
@@ -1461,6 +1484,130 @@ for ext in ['png', 'eps']:
  #+END_SRC
 
  #+RESULTS:
+
+
+*** Fig.\nbsp{}ref:fig:fourfold Comparison of M/MgO boundary to (211) fourfold step
+
+#+BEGIN_SRC python
+from ase.db import *
+from ase.visualize import view
+import matplotlib.pyplot as plt
+import seaborn as sns
+from utils import amarkers, mcolors, regression, get_E_ads, get_colors
+plt.style.use('classic')
+
+sns.set_context('poster')
+sns.set_style('darkgrid')
+
+db = connect('metal-support-boundary.db')
+
+plt.figure(figsize=(8, 8), dpi=150)
+
+# First create empty plots to be used for legend
+plots_m, plots_a, labels_m, labels_a = [], [], [], []
+for m in ['Rh', 'Ir', 'Pd', 'Pt', 'Ag', 'Au']:
+    p1, = plt.plot([], [], 's', color=mcolors[m], label=m, ms=22)
+    plots_m.append(p1)
+    labels_m.append(m)
+
+for a in ['C', 'N', 'O', 'CH', 'NH', 'OH', 'F']:
+    ads = a
+    if a in ['NH', 'OH']:
+        ads = a[1:] + a[0]
+
+    p2, = plt.plot([], [], amarkers[ads], color='w', mew=1.5, mec='k', ms=20)
+    plots_a.append(p2)
+    labels_a.append(a)
+
+# Selections from database
+# Clean surfaces
+fcc111_clean_s = 'ads=None, natoms=16'
+fcc211_clean_s = 'ads=None, natoms=36'
+# Nanowires
+supported_clean_s = 'ads=None, calc_type=relax, p_lattice=MgO, natoms=132'
+unsupported_clean_s = 'ads=None, calc_type=relax, p_lattice!=MgO, natoms=24'
+
+colors = ['#8073B1', '#C84B54', '#138198', '#27ae60', '#95a5a6', '#f1c40f']
+
+for ads in ['C', 'CH', 'N', 'HN', 'O', 'HO', 'F']:
+    marker = amarkers[ads]
+
+    fcc211f_a_s = 'ads={0}, natoms={1}, site=fourfold'.format(ads, len(ads) + 36)
+
+    supported_a_s = 'ads={0}, calc_type=relax, p_lattice=MgO, natoms={1}, site=B1'.format(
+        ads, 132 + len(ads))
+
+
+    fcc211f_Eads = get_E_ads(db,
+                            ads,
+                            fcc211f_a_s,
+                            fcc211_clean_s)
+
+    supported_E_ads = get_E_ads(db,
+                                ads,
+                                supported_a_s,
+                                supported_clean_s)
+
+    pairs = [
+             [fcc211f_Eads,
+              supported_E_ads,
+              '$E_{\mathrm{ads}}^{\mathrm{fcc(211) fourfold}}$ (eV)',
+              '$E_{\mathrm{ads}}^{\mathrm{supported}}$ (eV)']]
+
+    for i, pair in enumerate(pairs):
+        E1, E2, l1, l2 = pair
+
+        # Correct mapping of colors to remove nan values
+        new_colors = get_colors(colors, E1, E2)
+
+        plt.scatter(E1,
+                    E2,
+                    marker=marker,
+                    edgecolors='k',
+                    s=450,
+                    linewidth=1.5,
+                    c=new_colors)
+
+        plt.plot((-8, -1.4), (-8, -1.4), '--', lw=2, color='#354A5D')
+        plt.xlim(-8, -1.4)
+        plt.ylim(-8, -1.4)
+        plt.xlabel(l1, fontsize=38)
+        plt.ylabel(l2, fontsize=38)
+        plt.xticks(fontsize=24)
+        plt.yticks(fontsize=24)
+
+        lm = plt.legend(plots_m,
+                        labels_m,
+                        loc=2,
+                        ncol=3,
+                        frameon=True,
+                        fontsize=24,
+                        labelspacing=0.25,
+                        columnspacing=0.25,
+                        handletextpad=0,
+                        markerscale=0.8,
+                        borderpad=0.3,
+                        fancybox=True)
+
+        la = plt.legend(plots_a,
+                        labels_a,
+                        frameon=True,
+                        ncol=2,
+			loc=4,
+                        fontsize=24,
+                        labelspacing=0.25,
+                        columnspacing=0.25,
+                        handletextpad=0,
+                        markerscale=0.75,
+                        borderpad=0.3,
+                        fancybox=True)
+plt.gca().add_artist(lm)
+plt.tight_layout(pad=0.2)
+for ext in ['png', 'eps']:
+    plt.savefig('images/211-fourfold-comparison.{0}'.format(ext), dpi=300)
+#+END_SRC
+
+#+RESULTS:
 
  
 *** Strain and ligand effects
@@ -1788,7 +1935,7 @@ for ads in adsorbates:
 
 
   #+BEGIN_SRC python :results output org drawer
-fromAgg ase.db import connect
+from ase.db import connect
 from utils import get_energy, amarkers, mcolors
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -1869,8 +2016,67 @@ for ext in ['eps', 'png']:
   :RESULTS:
   :END:
 
+**** Table ref:tab:HSE: Sensitivity of redox energy to choice of functional
+
+#+BEGIN_SRC python :results output org drawer
+from ase.db import connect
+import numpy as np
+import matplotlib.pyplot as plt
+
+db = connect('metal-support-boundary.db')
+
+metals = ['Au', 'Pd', 'Ag']
+
+e_F_PBE = db.get(specie='F').energy
+e_F_HSE = db.get(specie='F-HSE06').energy
+
+e_MgO_PBE = db.get(surf='MgO', ads='None', calc_type='relax').energy
+e_MgO_HSE = db.get(surf='MgO', ads='None', calc_type='HSE06-scf').energy
+
+e_MgO_F_PBE = db.get(surf='MgO', ads='F', calc_type='relax').energy
+e_MgO_F_HSE = db.get(surf='MgO', ads='F', calc_type='HSE06-scf').energy
+
+# Adsorption energies on MgO
+e_ads_MgO_PBE = e_MgO_F_PBE - e_MgO_PBE - e_F_PBE
+e_ads_MgO_HSE = e_MgO_F_HSE - e_MgO_HSE - e_F_HSE
+
+for metal in metals:
+    e_M_MgO_PBE = db.get(surf='{0}-nanowire-on-MgO'.format(metal),
+                         ads='None',
+                         p_lattice='MgO',
+                         calc_type='relax').energy
+
+    e_M_MgO_HSE = db.get(surf='{0}-nanowire-on-MgO'.format(metal),
+                         ads='None',
+                         p_lattice='MgO',
+                         calc_type='HSE06-scf').energy
+
+    e_F_M_MgO_PBE = db.get(surf='{0}-nanowire-on-MgO'.format(metal),
+                           ads='F',
+                           site='R',
+                           p_lattice='MgO',
+                           calc_type='relax').energy
+
+    e_F_M_MgO_HSE = db.get(
+               surf='{0}-nanowire-on-MgO'.format(metal),
+               ads='F',
+               p_lattice='MgO',
+               calc_type='HSE06-scf',
+               site='R').energy
 
 
+    e_ads_M_MgO_PBE = e_F_M_MgO_PBE - e_M_MgO_PBE - e_F_PBE
+    e_ads_M_MgO_HSE = e_F_M_MgO_HSE - e_M_MgO_HSE - e_F_HSE
 
-bibliography:~/Dropbox/bibliography/references.bib
 
+    print '|{0}/MgO|${1:1.2f}$|${2:1.2f}$|${3:1.2f}$|${4:1.2f}$'.format(metal,
+                                                e_ads_M_MgO_PBE,
+                                                e_ads_M_MgO_HSE,
+                                                e_ads_M_MgO_PBE - e_ads_MgO_PBE,
+                                                e_ads_M_MgO_HSE - e_ads_MgO_HSE)
+#+END_SRC
+
+#+RESULTS:
+
+
+bibliography:../shorttitles.bib,../references.bib
